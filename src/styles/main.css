@@ -1,0 +1,22 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 覆写滚动条的样式 */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) rgba(0, 0, 0, 0.5);
+}
+
+html.dark {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 32, 32, 0.1) rgba(255, 255, 255, 0.5);
+}
+
+html.dark {
+  background: #121212;
+}

@@ -1,0 +1,1 @@
+export { GoodDataBase } from './GoodsData'
