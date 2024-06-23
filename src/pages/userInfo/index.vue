@@ -45,7 +45,7 @@ onMounted(() => {
           干点什么?
         </em>
         <div fcol fcenter gap2>
-          <div w40 btn @click="router.push('/cart')">
+          <div w40 btn @click="router.push('/shop')">
             去购物车
           </div>
           <div w40 btn @click="router.push('/order')">

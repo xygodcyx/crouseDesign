@@ -1,4 +1,4 @@
-import { Random } from 'mockjs'
+import { Random, mock } from 'mockjs'
 import { GoodDataBase } from '../../types'
 
 let goodsDataBase: Array<GoodDataBase> = [
@@ -11,13 +11,23 @@ let goodsDataBase: Array<GoodDataBase> = [
     '/imgs/banner1.jpg',
   ),
 ]
+const classifyValue2classify: Record<'fun' | 'food', string> = {
+  fun: '好玩的',
+  food: '好吃的',
+}
 
 export function getGoodsDataBase(id?: number) {
   goodsDataBase = JSON.parse(localStorage.getItem('goodDataBase') || '[]') || []
   const name = Random.name()
+  const classify: Record<'classify', 'fun' | 'food'> = mock({
+    'classify|1': [
+      'fun',
+      'food',
+    ],
+  })
   addGood(new GoodDataBase(
-    '好玩的',
-    'fun',
+    classifyValue2classify[classify.classify],
+    classify.classify,
     name,
     Random.integer(100, 200),
     Random.integer(50, 100),

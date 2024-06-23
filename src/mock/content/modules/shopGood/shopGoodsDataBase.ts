@@ -10,8 +10,33 @@ export function getAllShopGoods4UserId(userId: number) {
   shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
   return shopGoodsDataBase.filter(shopGood => shopGood.userId === userId)
 }
+function CheckUserHasDuplicateShopGood(shopGood: ShopGoodDataBase): boolean {
+  let result = false
+  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
+  shopGoodsDataBase.forEach((_shopGood) => {
+    if (_shopGood.userId === shopGood.userId && _shopGood.good.id === shopGood.good.id) {
+      result = true
+    }
+  })
+  return result
+}
+function getShopGoodIndex(shopGood: ShopGoodDataBase): number {
+  let result = -1
+  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
+  result = shopGoodsDataBase.findIndex(_shopGood => _shopGood.userId === shopGood.userId && _shopGood.good.id === shopGood.good.id)
+  return result
+}
 export function addShopGood(shopGood: ShopGoodDataBase) {
-  shopGoodsDataBase.push(shopGood)
+  if (!CheckUserHasDuplicateShopGood(shopGood)) {
+    shopGoodsDataBase.push(shopGood)
+  }
+  else {
+    const i = getShopGoodIndex(shopGood)
+    if (i !== -1) {
+      shopGoodsDataBase[i].quantity += 1
+      shopGoodsDataBase[i].sum = shopGoodsDataBase[i].quantity * shopGoodsDataBase[i].good.newPrice
+    }
+  }
   localStorage.setItem('shopGoodDataBase', JSON.stringify(shopGoodsDataBase))
 }
 export function deleteShopGood(id: number) {

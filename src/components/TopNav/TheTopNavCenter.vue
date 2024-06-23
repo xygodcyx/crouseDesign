@@ -11,7 +11,7 @@ const navItems = [
   },
   {
     label: '购物车',
-    path: '/cart',
+    path: '/shop',
     needLogin: true,
     onclick: () => {},
   },

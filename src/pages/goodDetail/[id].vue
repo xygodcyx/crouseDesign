@@ -1,13 +1,26 @@
 <script setup lang="ts">
+import { addShopGoodsData } from '~/api'
 import type { GoodDataBase } from '~/mock/content/types'
+import { ShopGoodDataBase } from '~/mock/content/types'
+import { useUserStore } from '~/store/user'
 
 const params = useRoute('/goodDetail/[id]').params
 // const router = useRouter()
-const good = ref<GoodDataBase | null>(null)
+const userStore = useUserStore()
+const good = ref<GoodDataBase | undefined>(undefined)
 onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
 })
+function addShop() {
+  addShopGoodsData(new ShopGoodDataBase(userStore.userInfo.id, good.value))
+}
+function buyNow() {
+
+}
+function addLike() {
+
+}
 </script>
 
 <template>
@@ -43,13 +56,13 @@ onMounted(async () => {
       </div>
     </div>
     <div fcol flex="gap3" class="operation" wa lt-sm="w60">
-      <button flex="~ justify-center" btn>
+      <button flex="~ justify-center" btn @click="buyNow">
         <span i-icon-park-outline:buy inline-block h6 w6 /> <span>立即购买</span>
       </button>
-      <button flex="~ justify-center" btn>
+      <button flex="~ justify-center" btn @click="addShop">
         <span i-ph:shopping-cart inline-block h6 w6 /> <span>加入购物车</span>
       </button>
-      <button flex="~ justify-center" btn>
+      <button flex="~ justify-center" btn @click="addLike">
         <span i-material-symbols:kid-star-outline-sharp inline-block h6 w6 /> <span>收藏</span>
       </button>
     </div>

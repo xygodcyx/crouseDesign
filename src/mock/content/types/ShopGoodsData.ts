@@ -16,6 +16,7 @@ export class ShopGoodDataBase implements ShopGood {
   good: Good
   quantity: number
   sum: number
+
   constructor(userId: number, good?: Good, quantity?: number, sum?: number) {
     this.id = Random.integer(10)
     this.userId = userId
