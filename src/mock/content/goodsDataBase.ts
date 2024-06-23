@@ -12,17 +12,18 @@ let goodsDataBase: Array<GoodDataBase> = [
   ),
 ]
 
-export function getGoodsDataBase() {
+export function getGoodsDataBase(id?: number) {
   goodsDataBase = JSON.parse(localStorage.getItem('goodDataBase') || '[]') || []
+  const name = Random.name()
   addGood(new GoodDataBase(
     '好玩的',
     'fun',
-    Random.name(),
+    name,
     Random.integer(100, 200),
     Random.integer(50, 100),
-    '/imgs/banner1.jpg',
+    Random.image('600x400', Random.color(), name.substring(0, 5)),
   ))
-  return goodsDataBase
+  return id ? goodsDataBase.filter(good => good.id === id) : goodsDataBase
 }
 export function addGood(good: GoodDataBase) {
   goodsDataBase.push(good)

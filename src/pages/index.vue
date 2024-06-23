@@ -4,6 +4,7 @@ import type { Good } from '~/mock/content/types/GoodsData'
 defineOptions({
   name: 'IndexPage',
 })
+const router = useRouter()
 const goodsData = ref<Array<Good>>([])
 const goodsSearchData = ref<Array<Good>>([])
 const classifys = [
@@ -95,10 +96,10 @@ function search() {
         ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md
         lt-sm="w-160px"
       >
-        <el-image :src="good.pic" @click="log(good)">
+        <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">
           <template #placeholder>
-            <div class="image-slot">
-              Loading<span class="dot">...</span>
+            <div class="image-slot" text-center>
+              等一会哦<span class="dot">...</span>
             </div>
           </template>
         </el-image>

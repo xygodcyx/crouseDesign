@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Random } from 'mockjs'
 
-const labels = ['不知道地址就不要乱输~', '是我UI写的不好看吗？', '那就来Gitup提issue或者自己写pr!', '更不要试图黑了...', '怎么样^^']
+const labels = ['不知道地址就不要乱输~', '是我UI写的不好看吗？', '那就来github提issue或者自己写pr!', '更不要试图黑了...', '怎么样^^']
 </script>
 
 <template>
