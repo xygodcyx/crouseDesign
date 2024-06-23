@@ -4,11 +4,10 @@ import { useUserStore } from '~/store/user'
 const router = useRouter()
 const navItems = [
   {
-    label: '个人信息',
-    path: '/userInfo',
+    label: '登出',
+    path: '/logout',
     needLogin: true,
-    onclick: () => {
-    },
+    onclick: () => {},
   },
   {
     label: '购物车',

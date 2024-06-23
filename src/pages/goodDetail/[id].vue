@@ -7,7 +7,6 @@ const good = ref<GoodDataBase | null>(null)
 onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
-  log(good.value)
 })
 </script>
 
@@ -45,13 +44,13 @@ onMounted(async () => {
     </div>
     <div fcol flex="gap3" class="operation" wa lt-sm="w60">
       <button flex="~ justify-center" btn>
-        <span class="i-ph:shopping-cart" inline-block h6 w6 /> <span>立即购买</span>
+        <span i-icon-park-outline:buy inline-block h6 w6 /> <span>立即购买</span>
       </button>
       <button flex="~ justify-center" btn>
-        <span class="i-ph:shopping-cart" inline-block h6 w6 /> <span>加入购物车</span>
+        <span i-ph:shopping-cart inline-block h6 w6 /> <span>加入购物车</span>
       </button>
       <button flex="~ justify-center" btn>
-        <span class="i-ph:shopping-cart" inline-block h6 w6 /> <span>收藏</span>
+        <span i-material-symbols:kid-star-outline-sharp inline-block h6 w6 /> <span>收藏</span>
       </button>
     </div>
   </div>

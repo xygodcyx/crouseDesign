@@ -54,42 +54,43 @@ function search() {
 </script>
 
 <template>
-  <div>
+  <div lt-sm="mt--8">
     <!-- top -->
     <div
-      flex="~ row justify-between items-center" mb4 h-10
-      lt-sm="flex='~ col justify-between items-center' h-20"
+      frow mb3 ml2 h-10 justify-between
+      lt-sm="fcol fcenter h-16 mb6"
     >
       <!-- left classify -->
-      <nav flex="~ justify-between" lt-sm="">
+      <nav flex="~ justify-around" wa>
         <span
           v-for="classifyInfo in classifys" :key="classifyInfo.label"
-          mr-3
-          cursor-pointer text-lg hover:text-warmgray
+
+          mr-3 cursor-pointer text-xl hover:text-warmgray
+          lt-sm="text-4 mb1"
           @click="onClassifyClick(classifyInfo.value)"
         >
           {{ classifyInfo.label }}
         </span>
       </nav>
       <!-- right search -->
-      <nav>
+      <nav lt-sm="wa h30  frow fcenter">
         <input
           v-model="key"
           type="text"
           placeholder="搜点什么?"
-
-          mr3 h8 border border-rounded text-center text-black outline-none placeholder-text-sm
+          mr3 border border-rounded text-center text-black outline-none placeholder-text-sm
           lt-md="h6 w24 mr1"
+          lt-sm="w60 h10"
           @keydown.enter="onSearchButtonClick"
         >
-        <button btn lt-md="text-2.6" @click="onSearchButtonClick">
-          搜索
+        <button b-rounded bg-red lt-md="text-4 w10 h10 text-center" @click="onSearchButtonClick">
+          搜
         </button>
       </nav>
       <!-- right search -->
     </div>
     <!-- content -->
-    <div flex="~ wrap " gap-10 lt-sm="justify-center gap-4" lt-xl="justify-center gap6">
+    <div flex="~ wrap " gap-2 lt-sm="justify-center gap-4" lt-xl="justify-center gap6">
       <div
         v-for="good in goodsSearchData" :key="good.label"
         flex="~ col"

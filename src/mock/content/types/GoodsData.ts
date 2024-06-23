@@ -18,13 +18,14 @@ export class GoodDataBase implements Good {
   oldPrice: number
   newPrice: number
   pic: string
-  constructor(classify: string, classifyValue: string, label: string, oldPrice: number, newPrice: number, pic: string) {
+  constructor(classify?: string, classifyValue?: string, label?: string, oldPrice?: number, newPrice?: number, pic?: string) {
     this.id = Random.integer(10)
-    this.classify = classify
-    this.classifyValue = classifyValue
-    this.label = label
-    this.oldPrice = oldPrice
-    this.newPrice = newPrice
-    this.pic = pic
+    this.classify = classify || '好玩的'
+    this.classifyValue = classifyValue || 'fun'
+    const name = Random.name()
+    this.label = label || name
+    this.oldPrice = oldPrice || Random.integer(100, 150)
+    this.newPrice = newPrice || Random.integer(50, 100)
+    this.pic = pic || Random.image('600x400', Random.color(), name.substring(0, 5))
   }
 }

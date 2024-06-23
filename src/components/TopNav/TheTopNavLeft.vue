@@ -27,7 +27,7 @@ const userStore = useUserStore()
     </span> -->
     <span
       mr-2 cursor-pointer
-      transition-duration-300 @click="router.push(`${userStore.isLogin ? '/logout' : '/login'}`)"
+      transition-duration-300 @click="router.push(`${userStore.isLogin ? '/userInfo' : '/login'}`)"
     >
       {{ userStore.isLogin ? userStore.userInfo.name : "登录" }}
     </span>
@@ -35,7 +35,7 @@ const userStore = useUserStore()
       <el-image
         v-show="userStore.isLogin"
         style="width: 24px; height: 24px" :src="userStore.userInfo.imgFace" h6 w6 cursor-pointer border-rounded
-        @click="router.push(`${userStore.isLogin ? '/logout' : '/login'}`)"
+        @click="router.push(`${userStore.isLogin ? '/userInfo' : '/login'}`)"
       />
     </Transition>
   </nav>
