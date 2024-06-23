@@ -88,7 +88,7 @@ function search() {
       <!-- right search -->
     </div>
     <!-- content -->
-    <div flex="~ wrap " gap-10 lt-sm="justify-start">
+    <div flex="~ wrap " gap-10 lt-sm="justify-center gap-4" lt-xl="justify-center gap6">
       <div
         v-for="good in goodsSearchData" :key="good.label"
         flex="~ col"

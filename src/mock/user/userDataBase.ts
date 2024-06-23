@@ -24,6 +24,14 @@ export function addUser(user: UserDataBase) {
   user.imgFace = Random.image('40x40', Random.color(), user.name.substring(0, 1))
   localStorage.setItem('userDataBase', JSON.stringify(userDataBase))
 }
+export function updateUser(user: UserDataBase) {
+  userDataBase = JSON.parse(localStorage.getItem('userDataBase') || '[]') || []
+  const index = userDataBase.findIndex(u => u.id === user.id)
+  if (index !== -1) {
+    userDataBase[index] = user
+    localStorage.setItem('userDataBase', JSON.stringify(userDataBase))
+  }
+}
 export function deleteUser(user: UserDataBase) {
   const index = userDataBase.findIndex(u => u.id === user.id)
   if (index !== -1) {
