@@ -1,0 +1,1 @@
+export { getGoodsData } from './getGoodsData'

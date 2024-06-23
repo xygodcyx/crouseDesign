@@ -1,6 +1,6 @@
 import { Random } from 'mockjs'
 
-import type { UserDataBase } from './types'
+import type { UserDataBase } from '../types'
 
 let userDataBase: Array<UserDataBase> = [
   // new UserDataBase('xygod', 'xygod'),

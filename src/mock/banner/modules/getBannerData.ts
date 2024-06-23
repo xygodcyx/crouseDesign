@@ -1,4 +1,4 @@
-export function getBannerData() {
+export function getBannersData() {
   const code = 200
   const msg = '获取成功'
   const data = [

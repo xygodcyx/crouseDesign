@@ -1,4 +1,4 @@
-import type { ShopGoodDataBase } from './types'
+import type { ShopGoodDataBase } from '../../types'
 
 let shopGoodsDataBase: Array<ShopGoodDataBase> = []
 

@@ -1,24 +1,21 @@
 import Mock from 'mockjs'
 
 // import book from './modules/book';
-import { getBannerData } from './banner/getBannerData'
-import { getGoodsData } from './content/getGoodsData'
-import { login } from './user/login'
-import { register } from './user/register'
-import { update } from './user/update'
-import { addShopGood, deleteShopGood, getAllShopGoods4UserId, getShopGoodsDataBase } from './content/shopGoodsDataBase'
+import { getBannersData } from './banner'
+import { addShopGoodsData, deleteShopGoodData, getAllShopGoods4UserIdData, getGoodsData, getShopGoodsDataBaseData } from './content/'
+import { login, register, update } from './user'
 
 const { mock } = Mock // Mock函数
 // 使用拦截规则拦截命中的请求
 // mock( url, post/get, 返回的数据/函数（有return值）);
 // banner
-mock('/api/getBannerData', 'get', getBannerData)
+mock('/api/getBannerData', 'get', getBannersData)
 // goods
 mock('/api/getGoodsData', 'post', getGoodsData)
-mock('/api/getShopGoodsData', 'post', getShopGoodsDataBase)
-mock('/api/getAllGoodsData4UserId', 'post', getAllShopGoods4UserId)
-mock('/api/addShopGoodsData', 'post', addShopGood)
-mock('/api/deleteShopGoodsData', 'post', deleteShopGood)
+mock('/api/getShopGoodsData', 'post', getShopGoodsDataBaseData)
+mock('/api/getAllGoodsData4UserId', 'post', getAllShopGoods4UserIdData)
+mock('/api/addShopGoodsData', 'post', addShopGoodsData)
+mock('/api/deleteShopGoodsData', 'post', deleteShopGoodData)
 // user
 mock('/api/login', 'post', login)
 mock('/api/register', 'post', register)

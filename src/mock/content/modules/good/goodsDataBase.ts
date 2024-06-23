@@ -1,5 +1,5 @@
 import { Random } from 'mockjs'
-import { GoodDataBase } from './types'
+import { GoodDataBase } from '../../types'
 
 let goodsDataBase: Array<GoodDataBase> = [
   new GoodDataBase(

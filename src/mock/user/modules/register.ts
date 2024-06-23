@@ -1,7 +1,6 @@
 import type { MockjsRequestOptions } from 'mockjs'
-import { addUser } from './userDataBase'
-import { UserDataBase } from './types'
-import { canRegister } from '~/mock/user/userDataBase'
+import { UserDataBase } from '../types'
+import { addUser, canRegister } from './userDataBase'
 
 export function register(req: MockjsRequestOptions) {
   // log(req.body)
