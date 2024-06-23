@@ -8,7 +8,6 @@ let userDataBase: Array<UserDataBase> = [
 
 function testNewFunction() {
   userDataBase.forEach((user) => {
-    log(user.imgFace)
     if (!user.imgFace || user.imgFace === '/imgs/face.jpg') {
       user.imgFace = Random.image('40x40', Random.color(), user.name.substring(0, 1))
     }

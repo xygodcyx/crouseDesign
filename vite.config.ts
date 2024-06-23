@@ -10,6 +10,7 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   resolve: {
@@ -30,6 +31,7 @@ export default defineConfig({
         }),
       },
     }),
+    vueDevTools(),
 
     // https://github.com/posva/unplugin-vue-router
     VueRouter(),

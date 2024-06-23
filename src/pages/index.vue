@@ -27,7 +27,6 @@ onMounted(async () => {
   const result = await getGoodsData()
   goodsData.value = result.data
   // goodsSearchData.value = goodsData.value
-  log(goodsData.value)
 })
 const key = ref('')
 const classify = ref('')
@@ -73,17 +72,23 @@ function search() {
         </span>
       </nav>
       <!-- right search -->
-      <nav lt-sm="wa h30  frow fcenter">
+      <nav lt-sm="wa h30 mr0" frow fcenter mr6>
         <input
           v-model="key"
           type="text"
           placeholder="搜点什么?"
-          mr3 border border-rounded text-center text-black outline-none placeholder-text-sm
+
+          mr3 h10 w100
+          border border-rounded text-center text-black outline-none placeholder-text-sm
           lt-md="h6 w24 mr1"
           lt-sm="w60 h10"
           @keydown.enter="onSearchButtonClick"
         >
-        <button b-rounded bg-red lt-md="text-4 w10 h10 text-center" @click="onSearchButtonClick">
+        <button
+
+          h10 w10 b-rounded bg-red text-center
+          lt-md="text-4" @click="onSearchButtonClick"
+        >
           搜
         </button>
       </nav>
@@ -94,7 +99,7 @@ function search() {
       <div
         v-for="good in goodsSearchData" :key="good.label"
         flex="~ col"
-        ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md
+        ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md dark:shadow="#ffffff32"
         lt-sm="w-160px"
       >
         <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">

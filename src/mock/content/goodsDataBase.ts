@@ -29,13 +29,13 @@ export function addGood(good: GoodDataBase) {
   goodsDataBase.push(good)
   localStorage.setItem('goodDataBase', JSON.stringify(goodsDataBase))
 }
-export function deleteGood(good: GoodDataBase) {
-  const index = goodsDataBase.findIndex(u => u.id === good.id)
+export function deleteGood(id: number) {
+  const index = goodsDataBase.findIndex(u => u.id === id)
   if (index !== -1) {
     goodsDataBase.splice(index, 1)
     localStorage.setItem('goodDataBase', JSON.stringify(goodsDataBase))
   }
   else {
-    warn(`no find good ${good.label} : ${good.id}`)
+    warn(`no find id  : ${id}`)
   }
 }
