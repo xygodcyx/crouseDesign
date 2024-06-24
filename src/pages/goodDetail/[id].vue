@@ -13,12 +13,10 @@ onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
   shopGood.value = (await getShopGoodData4GoodIdAndUserId(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
-  log('shopGood', shopGood.value)
 })
 function addShop() {
   if (shopGood.value) {
     shopGood.value.quantity += wantAddQuantity.value
-    log('addShopGood', shopGood.value)
     addShopGoodsData(shopGood.value)
     wantAddQuantity.value = 1
     userStore.addShopGoodId(shopGood.value.id)
@@ -46,7 +44,6 @@ function addLike() {
           </div>
         </template>
       </el-image>
-      <!-- <img h-100px w-full select-none :src="good.pic" alt="" @click="console.log(good)"> -->
       <span cursor-text text-center text-2xl>{{ good.label }}</span>
       <div flex="~ items-center justify-between">
         <p flex="~ items-center justify-center" w-full cursor-text>
