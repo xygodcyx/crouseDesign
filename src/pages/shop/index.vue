@@ -5,6 +5,7 @@ import { useUserStore } from '~/store/user'
 const router = useRouter()
 const userStore = useUserStore()
 const shopGoods = ref<Array<ShopGoodDataBase>>()
+const allShouldPay = computed(() => (shopGoods?.value || []).reduce((pre, cur) => pre + cur.sum, 0) || 0)
 onMounted(async () => {
   await getAllShopGoods()
 })
@@ -17,6 +18,13 @@ async function removeShopGood(id: number) {
   await deleteShopGoodsData(id)
   await getAllShopGoods()
   userStore.removeShopGoodId(id)
+}
+async function removeAllShopGood() {
+  (shopGoods.value || []).forEach(async (shopGood) => {
+    await deleteShopGoodsData(shopGood.id)
+  })
+  await getAllShopGoods()
+  userStore.removeAllShopGoodId()
 }
 
 async function increaseShopGoodQuantity(shopGood: ShopGoodDataBase) {
@@ -32,19 +40,34 @@ async function subtractShopGoodQuantity(shopGood: ShopGoodDataBase) {
 async function buyShopGood(shopGood: ShopGoodDataBase) {
   log(shopGood)
 }
+async function buyAllShopGood() {
+
+}
 </script>
 
 <template>
-  <div class="shopGoodsWrap" flex="~ justify-center items-center">
+  <div class="shopGoodsWrap" flex="~ justify-center items-center" font-sans>
     <div v-if="shopGoods?.length !== 0" class="shopGoods" flex="col">
+      <!-- operation -->
+      <div flex="~ justify-start items-center gap2" mb2>
+        <div text-btn h9 w9 bg-green text-sm lh-9 @click="buyAllShopGood">
+          全要
+        </div>
+        <div text-btn h9 w9 text-3 lh-9 @click="removeAllShopGood">
+          全不要
+        </div>
+        <div h9 w9 text-xl text-red font-bold lh-9>
+          ￥{{ allShouldPay }}
+        </div>
+      </div>
       <div
         v-for="shopGood in shopGoods" :key="shopGood.id" class="shopGoodItem"
         mb4
         h10 flex="~ items-center justify-between gap6" lt-sm="gap0"
       >
         <div class="left" flex="~ justify-center items-center gap4" lt-sm="h10 gap1" h20>
-          <img :src="shopGood.good.pic" alt="12" lt-sm="h7 w7" inline-block h10 w10 b-rounded>
-          <span mr3 lt-sm="text-sm" text-2xl :title="shopGood.good.label">{{ shopGood.good.label.length > 12 ? `${shopGood.good.label.substring(0, 12)}...` : shopGood.good.label }}</span>
+          <img :src="shopGood.good.pic.replace(shopGood.good.label.substring(0, 5), shopGood.good.label[0]).replace('600x400', '30x30')" alt="12" lt-sm="h7 w7" inline-block h10 w10 b-rounded>
+          <span mr3 lt-sm="text-3" text-2xl :title="shopGood.good.label">{{ shopGood.good.label.length > 12 ? `${shopGood.good.label.substring(0, 12)}...` : shopGood.good.label }}</span>
           <div flex="~ items-center justify-center" wa>
             <span mr2 lt-sm="text-4" text-2xl :title="shopGood.good.label">{{ shopGood.quantity }}</span>
             <span text-5 text-red lt-sm="text-4" :title="shopGood.good.label">￥{{ shopGood.sum }}</span>

@@ -19,6 +19,9 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value.shopGoodIds = userInfo.value.shopGoodIds.filter(id => id !== shopGoodId)
     userInfo.value.shopGoodIds = [...(new Set(userInfo.value.shopGoodIds))]
   }
+  function removeAllShopGoodId() {
+    userInfo.value.shopGoodIds = []
+  }
   function addLikeId() {
 
   }
@@ -29,5 +32,5 @@ export const useUserStore = defineStore('user', () => {
   watch(() => userInfo.value, () => {
     updateUser(userInfo.value)
   }, { deep: true })
-  return { isLogin, userInfo, logout, addShopGoodId, removeShopGoodId, addLikeId, addOrderId }
+  return { isLogin, userInfo, logout, addShopGoodId, removeShopGoodId, removeAllShopGoodId, addLikeId, addOrderId }
 })
