@@ -10,6 +10,10 @@ export function getAllShopGoods4UserId(userId: number) {
   shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
   return shopGoodsDataBase.filter(shopGood => shopGood.userId === userId)
 }
+export function getShopGood4GoodId(goodId: number): ShopGoodDataBase | null {
+  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
+  return shopGoodsDataBase.find(shopGood => shopGood.good.id === goodId) || null
+}
 function CheckUserHasDuplicateShopGood(shopGood: ShopGoodDataBase): boolean {
   let result = false
   shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
@@ -33,8 +37,8 @@ export function addShopGood(shopGood: ShopGoodDataBase) {
   else {
     const i = getShopGoodIndex(shopGood)
     if (i !== -1) {
-      shopGoodsDataBase[i].quantity += 1
-      shopGoodsDataBase[i].sum = shopGoodsDataBase[i].quantity * shopGoodsDataBase[i].good.newPrice
+      shopGoodsDataBase[i] = shopGood
+      shopGoodsDataBase[i].sum = shopGood.quantity * shopGood.good.newPrice
     }
   }
   localStorage.setItem('shopGoodDataBase', JSON.stringify(shopGoodsDataBase))

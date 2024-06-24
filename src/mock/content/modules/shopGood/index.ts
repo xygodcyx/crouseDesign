@@ -1,4 +1,5 @@
 export { addShopGoodsData } from './addShopGoodsData'
 export { deleteShopGoodData } from './deleteShopGoodsData'
-export { getAllShopGoods4UserIdData } from './getAllGoodsData4UserId'
+export { getAllShopGoods4UserIdData } from './getAllShopGoodsData4UserIdData'
 export { getShopGoodsDataBaseData } from './getShopGoodsData'
+export { getShopGood4GoodIdData } from './getShopGood4GoodIdData'
