@@ -12,7 +12,7 @@ onMounted(async () => {
 
 async function getAllShopGoods() {
   const userId = userStore.userInfo.id
-  shopGoods.value = (await getAllGoodsData4UserId(userId)).data
+  shopGoods.value = (await getAllShopGoodData4UserId(userId)).data
 }
 async function removeShopGood(id: number) {
   await deleteShopGoodsData(id)

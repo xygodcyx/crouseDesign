@@ -12,7 +12,7 @@ const wantAddQuantity = ref(1)
 onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
-  shopGood.value = (await getShopGood4GoodIdData(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
+  shopGood.value = (await getShopGoodData4GoodIdAndUserId(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
   log('shopGood', shopGood.value)
 })
 function addShop() {

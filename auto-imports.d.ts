@@ -40,12 +40,14 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const error: typeof import('./src/composables/log')['error']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const getAllGoodsData4UserId: typeof import('./src/api/content/index')['getAllGoodsData4UserId']
+  const getAllShopGoodData4UserId: typeof import('./src/api/content/index')['getAllShopGoodData4UserId']
   const getBannerData: typeof import('./src/api/banner/index')['getBannerData']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getGoodsData: typeof import('./src/api/content/index')['getGoodsData']
+  const getShopGood4GoodIdAndUserIdData: typeof import('./src/api/content/index')['getShopGood4GoodIdAndUserIdData']
   const getShopGood4GoodIdData: typeof import('./src/api/content/index')['getShopGood4GoodIdData']
+  const getShopGoodData4GoodIdAndUserId: typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']
   const getShopGoodsData: typeof import('./src/api/content/index')['getShopGoodsData']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -333,7 +335,6 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly addShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['addShopGoodsData']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -366,12 +367,12 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly error: UnwrapRef<typeof import('./src/composables/log')['error']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
-    readonly getAllGoodsData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllGoodsData4UserId']>
+    readonly getAllShopGoodData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllShopGoodData4UserId']>
     readonly getBannerData: UnwrapRef<typeof import('./src/api/banner/index')['getBannerData']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getGoodsData']>
-    readonly getShopGood4GoodIdData: UnwrapRef<typeof import('./src/api/content/index')['getShopGood4GoodIdData']>
+    readonly getShopGoodData4GoodIdAndUserId: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']>
     readonly getShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodsData']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
@@ -652,7 +653,6 @@ declare module '@vue/runtime-core' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly addShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['addShopGoodsData']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -685,12 +685,12 @@ declare module '@vue/runtime-core' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly error: UnwrapRef<typeof import('./src/composables/log')['error']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
-    readonly getAllGoodsData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllGoodsData4UserId']>
+    readonly getAllShopGoodData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllShopGoodData4UserId']>
     readonly getBannerData: UnwrapRef<typeof import('./src/api/banner/index')['getBannerData']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getGoodsData']>
-    readonly getShopGood4GoodIdData: UnwrapRef<typeof import('./src/api/content/index')['getShopGood4GoodIdData']>
+    readonly getShopGoodData4GoodIdAndUserId: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']>
     readonly getShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodsData']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>

@@ -1,53 +1,34 @@
-import type { ShopGoodDataBase } from '../../types'
+import type { OrderDataBase } from '../../types'
 
-let shopGoodsDataBase: Array<ShopGoodDataBase> = []
+let orderDataBase: Array<OrderDataBase> = []
 
-export function getShopGoodsDataBase(id?: number) {
-  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  return id ? shopGoodsDataBase.filter(shopGood => shopGood.id === id) : shopGoodsDataBase
+export function getOrderDataBase(id?: number) {
+  orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
+  return id ? orderDataBase.filter(orderData => orderData.id === id) : orderDataBase
 }
-export function getAllShopGoods4UserId(userId: number) {
-  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  return shopGoodsDataBase.filter(shopGood => shopGood.userId === userId)
+export function getAllOrder4UserId(userId: number) {
+  orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
+  return orderDataBase.filter(orderData => orderData.userId === userId)
 }
-export function getShopGood4GoodIdAndUserId(goodId: number, userId: number): ShopGoodDataBase | null {
-  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  return shopGoodsDataBase.find(shopGood => shopGood.good.id === goodId && userId === shopGood.userId) || null
+export function addOrder(orderData: OrderDataBase) {
+  orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
+  orderDataBase.push(orderData)
+  localStorage.setItem('orderDataBase', JSON.stringify(orderDataBase))
 }
-function CheckUserHasDuplicateShopGood(shopGood: ShopGoodDataBase): boolean {
-  let result = false
-  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  shopGoodsDataBase.forEach((_shopGood) => {
-    if (_shopGood.userId === shopGood.userId && _shopGood.good.id === shopGood.good.id) {
-      result = true
+export function updateOrder(order: OrderDataBase) {
+  orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
+  orderDataBase.forEach((orderData, i) => {
+    if (orderData.id === order.id) {
+      orderDataBase[i] = order
     }
   })
-  return result
 }
-function getShopGoodIndex(shopGood: ShopGoodDataBase): number {
-  let result = -1
-  shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  result = shopGoodsDataBase.findIndex(_shopGood => _shopGood.userId === shopGood.userId && _shopGood.good.id === shopGood.good.id)
-  return result
-}
-export function addShopGood(shopGood: ShopGoodDataBase) {
-  if (!CheckUserHasDuplicateShopGood(shopGood)) {
-    shopGoodsDataBase.push(shopGood)
-  }
-  else {
-    const i = getShopGoodIndex(shopGood)
-    if (i !== -1) {
-      shopGoodsDataBase[i] = shopGood
-      shopGoodsDataBase[i].sum = shopGood.quantity * shopGood.good.newPrice
-    }
-  }
-  localStorage.setItem('shopGoodDataBase', JSON.stringify(shopGoodsDataBase))
-}
-export function deleteShopGood(id: number) {
-  const i = shopGoodsDataBase.findIndex(u => u.id === id)
+export function deleteOrder(id: number) {
+  orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
+  const i = orderDataBase.findIndex(u => u.id === id)
   if (i !== -1) {
-    shopGoodsDataBase.splice(i, 1)
-    localStorage.setItem('shopGoodDataBase', JSON.stringify(shopGoodsDataBase))
+    orderDataBase.splice(i, 1)
+    localStorage.setItem('orderDataBase', JSON.stringify(orderDataBase))
   }
   else {
     warn(`no find id : ${id}`)

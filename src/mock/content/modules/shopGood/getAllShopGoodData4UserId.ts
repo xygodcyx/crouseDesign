@@ -1,7 +1,7 @@
 import type { MockjsRequestOptions } from 'mockjs'
 import { getAllShopGoods4UserId } from './shopGoodsDataBase'
 
-export function getAllShopGoods4UserIdData(req: MockjsRequestOptions) {
+export function getAllShopGoodData4UserId(req: MockjsRequestOptions) {
   const { userId } = JSON.parse(req.body)
   // const id = 0
 

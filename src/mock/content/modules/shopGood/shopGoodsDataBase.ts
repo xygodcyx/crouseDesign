@@ -44,6 +44,7 @@ export function addShopGood(shopGood: ShopGoodDataBase) {
   localStorage.setItem('shopGoodDataBase', JSON.stringify(shopGoodsDataBase))
 }
 export function deleteShopGood(id: number) {
+  shopGoodsDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
   const i = shopGoodsDataBase.findIndex(u => u.id === id)
   if (i !== -1) {
     shopGoodsDataBase.splice(i, 1)
