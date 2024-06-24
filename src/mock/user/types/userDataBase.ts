@@ -9,9 +9,9 @@ declare interface IUserDataBase {
   imgFace: string
   balance: number
   registerDate: number
-  orderId: Array<number>
-  likeId: Array<number>
-  cartId: Array<number>
+  orderIds: Array<number>
+  likeIds: Array<number>
+  shopGoodIds: Array<number>
 }
 
 export class UserDataBase implements IUserDataBase {
@@ -23,9 +23,9 @@ export class UserDataBase implements IUserDataBase {
   imgFace: string
   balance: number = 0
   registerDate: number = new Date().getTime()
-  orderId: Array<number> = []
-  likeId: Array<number> = []
-  cartId: Array<number> = []
+  orderIds: Array<number> = []
+  likeIds: Array<number> = []
+  shopGoodIds: Array<number> = []
   constructor(account: string, password: string, name?: string, imgFace?: string) {
     this.account = account
     this.password = password

@@ -8,17 +8,20 @@ const params = useRoute('/goodDetail/[id]').params
 const userStore = useUserStore()
 const good = ref<GoodDataBase | undefined>(undefined)
 const shopGood = ref<ShopGoodDataBase | undefined>(undefined)
+const wantAddQuantity = ref(1)
 onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
-  shopGood.value = (await getShopGood4GoodIdData(good.value?.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
-  log(shopGood.value)
+  shopGood.value = (await getShopGood4GoodIdData(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
+  log('shopGood', shopGood.value)
 })
 function addShop() {
   if (shopGood.value) {
-    shopGood.value.quantity -= 2
-    log(shopGood.value)
+    shopGood.value.quantity += wantAddQuantity.value
+    log('addShopGood', shopGood.value)
     addShopGoodsData(shopGood.value)
+    wantAddQuantity.value = 1
+    userStore.addShopGoodId(shopGood.value.id)
   }
 }
 function buyNow() {
@@ -48,16 +51,16 @@ function addLike() {
       <div flex="~ items-center justify-between">
         <p flex="~ items-center justify-center" w-full cursor-text>
           <del text-center>
-            ￥{{ good.oldPrice }}
+            ￥{{ good.oldPrice * wantAddQuantity }}
           </del>
           <span text-center text-2xl text-red>
-            ￥{{ good.newPrice }}
+            ￥{{ good.newPrice * wantAddQuantity }}
           </span>
         </p>
-        <div inline-block ha w10 flex="~ justify-between items-center">
-          <span text-xl @click="''">-</span>
-          <span text-xl>1</span>
-          <span text-xl @click="''">+</span>
+        <div mr5 inline-block ha w10 flex="~ justify-between items-center gap2">
+          <span text-2xl @click="wantAddQuantity > 1 ? wantAddQuantity-- : wantAddQuantity = 1">-</span>
+          <span cursor-text text-xl>{{ wantAddQuantity }}</span>
+          <span text-2xl @click="wantAddQuantity++">+</span>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ export function canLogin(account: string, password: string): UserDataBase | bool
 }
 
 export function canRegister(account: string): boolean {
-  userDataBase = JSON.parse(localStorage.getItem('userDataBase') || '')
+  userDataBase = JSON.parse(localStorage.getItem('userDataBase') || '[]') || []
   let result = true
   userDataBase.forEach((user) => {
     if (user.account === account) {

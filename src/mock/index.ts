@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 
 // import book from './modules/book';
 import { getBannersData } from './banner'
-import { addShopGoodsData, deleteShopGoodData, getAllShopGoods4UserIdData, getGoodsData, getShopGood4GoodIdData, getShopGoodsDataBaseData } from './content/'
+import { addShopGoodsData, deleteShopGoodData, getAllShopGoods4UserIdData, getGoodsData, getShopGood4GoodIdAndUserIdData, getShopGoodsDataBaseData } from './content/'
 import { login, register, update } from './user'
 
 const { mock } = Mock // Mock函数
@@ -14,7 +14,7 @@ mock('/api/getBannerData', 'get', getBannersData)
 mock('/api/getGoodsData', 'post', getGoodsData)
 mock('/api/getShopGoodsData', 'post', getShopGoodsDataBaseData)
 mock('/api/getAllGoodsData4UserId', 'post', getAllShopGoods4UserIdData)
-mock('/api/getShopGood4GoodIdData', 'post', getShopGood4GoodIdData)
+mock('/api/getShopGood4GoodIdAndUserIdData', 'post', getShopGood4GoodIdAndUserIdData)
 mock('/api/addShopGoodsData', 'post', addShopGoodsData)
 mock('/api/deleteShopGoodsData', 'post', deleteShopGoodData)
 // user

@@ -10,9 +10,9 @@ export function getAllShopGoods4UserId(userId: number) {
   shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
   return shopGoodsDataBase.filter(shopGood => shopGood.userId === userId)
 }
-export function getShopGood4GoodId(goodId: number): ShopGoodDataBase | null {
+export function getShopGood4GoodIdAndUserId(goodId: number, userId: number): ShopGoodDataBase | null {
   shopGoodsDataBase = JSON.parse(localStorage.getItem('shopGoodDataBase') || '[]') || []
-  return shopGoodsDataBase.find(shopGood => shopGood.good.id === goodId) || null
+  return shopGoodsDataBase.find(shopGood => shopGood.good.id === goodId && userId === shopGood.userId) || null
 }
 function CheckUserHasDuplicateShopGood(shopGood: ShopGoodDataBase): boolean {
   let result = false

@@ -16,6 +16,7 @@ export default defineConfig({
     ['frow', 'flex flex-row'],
     ['fcol', 'flex flex-col'],
     ['fcenter', 'justify-center items-center'],
+    ['text-btn', 'bg-red inline-block text-xl text-center w6.3 h6.3 b-rounded lh-6.3'],
   ],
   presets: [
     presetUno(),

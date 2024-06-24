@@ -56,7 +56,7 @@ function search() {
   <div lt-sm="mt--8">
     <!-- top -->
     <div
-      frow mb3 ml2 h-10 justify-between
+      mb3 ml2 h-10 frow justify-between
       lt-sm="fcol fcenter h-16 mb6"
     >
       <!-- left classify -->
@@ -72,7 +72,7 @@ function search() {
         </span>
       </nav>
       <!-- right search -->
-      <nav lt-sm="wa h30 mr0" frow fcenter mr6>
+      <nav lt-sm="wa h30 mr0" mr6 frow fcenter>
         <input
           v-model="key"
           type="text"
@@ -97,7 +97,7 @@ function search() {
     <!-- content -->
     <div flex="~ wrap " gap-2 lt-sm="justify-center gap-4" lt-xl="justify-center gap6">
       <div
-        v-for="good in goodsSearchData" :key="good.label"
+        v-for="good in goodsSearchData" :key="good.id"
         flex="~ col"
         ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md dark:shadow="#ffffff32"
         lt-sm="w-160px"
