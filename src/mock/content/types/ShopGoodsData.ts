@@ -7,6 +7,7 @@ export declare interface ShopGood {
   sum: number
   userId: number
   good: GoodDataBase
+  addDate: number
 }
 
 export class ShopGoodDataBase implements ShopGood {
@@ -15,6 +16,7 @@ export class ShopGoodDataBase implements ShopGood {
   good: GoodDataBase
   quantity: number
   sum: number
+  addDate: number
 
   constructor(userId: number, good?: GoodDataBase, quantity?: number, sum?: number) {
     this.id = Random.integer(10)
@@ -22,5 +24,6 @@ export class ShopGoodDataBase implements ShopGood {
     this.good = good || new GoodDataBase()
     this.quantity = quantity || 0
     this.sum = sum || this.good.newPrice
+    this.addDate = new Date().getTime()
   }
 }

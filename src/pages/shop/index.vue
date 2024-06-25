@@ -9,16 +9,18 @@ const shopGoods = ref<Array<ShopGoodDataBase>>()
 const allShouldPay = computed(() => (shopGoods?.value || []).reduce((pre, cur) => pre + cur.sum, 0) || 0)
 onMounted(async () => {
   await getAllShopGoods()
+  ElMessage('获取购物车成功')
 })
 
 async function getAllShopGoods() {
   const userId = userStore.userInfo.id
-  shopGoods.value = (await getAllShopGoodData4UserId(userId)).data
+  shopGoods.value = ((await getAllShopGoodData4UserId(userId)).data).sort((a: ShopGoodDataBase, b: ShopGoodDataBase) => a.addDate > b.addDate ? -1 : 1)
 }
 async function removeShopGood(id: number) {
   await deleteShopGoodsData(id)
   await getAllShopGoods()
   userStore.removeShopGoodId(id)
+  ElMessage('删除成功')
 }
 async function removeAllShopGood() {
   (shopGoods.value || []).forEach(async (shopGood) => {
@@ -26,6 +28,7 @@ async function removeAllShopGood() {
   })
   await getAllShopGoods()
   userStore.removeAllShopGoodId()
+  ElMessage('删除成功')
 }
 
 async function increaseShopGoodQuantity(shopGood: ShopGoodDataBase) {
@@ -42,6 +45,7 @@ async function buyShopGood(shopGood: ShopGoodDataBase) {
   // log(shopGood)
   const orderData = new OrderDataBase(userStore.userInfo.id, [shopGood])
   const result = await addOrderData(orderData)
+  ElMessage('已添加到订单,请前往支付')
   log(result)
 }
 async function buyAllShopGood() {
@@ -49,6 +53,7 @@ async function buyAllShopGood() {
     const orderData = new OrderDataBase(userStore.userInfo.id, shopGoods.value)
     const result = await addOrderData(orderData)
     log(result)
+    ElMessage('已添加到订单,请前往支付')
   }
 }
 </script>

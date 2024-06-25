@@ -13,6 +13,7 @@ onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
   shopGood.value = (await getShopGoodData4GoodIdAndUserId(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
+  ElMessage('获取详细页成功')
 })
 function addShop() {
   if (shopGood.value) {
@@ -20,11 +21,13 @@ function addShop() {
     addShopGoodsData(shopGood.value)
     wantAddQuantity.value = 1
     userStore.addShopGoodId(shopGood.value.id)
+    ElMessage('已添加到购物车')
   }
 }
 function buyNow() {
   if (shopGood.value) {
-    shopGood.value.quantity += wantAddQuantity.value
+    log(shopGood.value)
+    shopGood.value.quantity = wantAddQuantity.value
     shopGood.value.sum = shopGood.value.quantity * shopGood.value.good.newPrice
     addOrderData(new OrderDataBase(userStore.userInfo.id, [shopGood.value]))
     ElMessage('已添加到订单,请前往支付')
@@ -33,6 +36,7 @@ function buyNow() {
 function addLike() {
   const like = new LikeDataBase(userStore.userInfo.id, good.value!)
   addLikeData(like)
+  ElMessage('已添加到收藏(如果已收藏则不会添加)')
 }
 </script>
 

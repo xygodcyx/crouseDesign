@@ -26,7 +26,7 @@ watchEffect(() => { goodsSearchData.value = goodsData.value })
 onMounted(async () => {
   const result = await getGoodsData()
   goodsData.value = result.data
-  // goodsSearchData.value = goodsData.value
+  ElMessage('获取商品成功')
 })
 const key = ref('')
 const classify = ref('')

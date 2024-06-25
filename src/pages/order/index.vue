@@ -33,6 +33,7 @@ onMounted(async () => {
   orderData.value = (await getAllOrderData4UserId(userStore.userInfo.id)).data
   log(orderData.value)
   onClickClassifyButton(ENUM_ORDER_STATUS.UNPAID)
+  ElMessage('获取订单成功')
 })
 async function cancelOrder(orderData: OrderDataBase) {
   orderData.status = ENUM_ORDER_STATUS.CANCELED
