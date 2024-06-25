@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { GoodDataBase } from '~/mock/content/types'
-import { ShopGoodDataBase } from '~/mock/content/types'
+import { LikeDataBase, OrderDataBase, ShopGoodDataBase } from '~/mock/content/types'
 import { useUserStore } from '~/store/user'
 
 const params = useRoute('/goodDetail/[id]').params
@@ -23,10 +23,16 @@ function addShop() {
   }
 }
 function buyNow() {
-
+  if (shopGood.value) {
+    shopGood.value.quantity += wantAddQuantity.value
+    shopGood.value.sum = shopGood.value.quantity * shopGood.value.good.newPrice
+    addOrderData(new OrderDataBase(userStore.userInfo.id, [shopGood.value]))
+    ElMessage('已添加到订单,请前往支付')
+  }
 }
 function addLike() {
-
+  const like = new LikeDataBase(userStore.userInfo.id, good.value!)
+  addLikeData(like)
 }
 </script>
 

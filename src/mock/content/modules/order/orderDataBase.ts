@@ -15,13 +15,14 @@ export function addOrder(orderData: OrderDataBase) {
   orderDataBase.push(orderData)
   localStorage.setItem('orderDataBase', JSON.stringify(orderDataBase))
 }
-export function updateOrder(order: OrderDataBase) {
+export function updateOrder(orderData: OrderDataBase) {
   orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []
-  orderDataBase.forEach((orderData, i) => {
-    if (orderData.id === order.id) {
-      orderDataBase[i] = order
+  orderDataBase.forEach((order, i) => {
+    if (order.id === orderData.id) {
+      orderDataBase[i] = orderData
     }
   })
+  localStorage.setItem('orderDataBase', JSON.stringify(orderDataBase))
 }
 export function deleteOrder(id: number) {
   orderDataBase = JSON.parse(localStorage.getItem('orderDataBase') || '[]') || []

@@ -11,3 +11,7 @@ export { addOrderData } from './order/addOrderData'
 export { deleteOrderData } from './order/deleteOrderData'
 export { getAllOrderData4UserId } from './order/getAllOrderData4UserId'
 export { updateOrderData } from './order/updateOrderData'
+// like
+export { addLikeData } from './like/addLikeData'
+export { deleteLikeData } from './like/deleteLikeData'
+export { getAllLikeData4UserId } from './like/getAllLikeData4UserId'

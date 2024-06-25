@@ -7,6 +7,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const ElMessage: typeof import('element-plus/es')['ElMessage']
+  const addLikeData: typeof import('./src/api/content/index')['addLikeData']
   const addOrderData: typeof import('./src/api/content/index')['addOrderData']
   const addShopGoodsData: typeof import('./src/api/content/index')['addShopGoodsData']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -36,12 +37,14 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const defineLoader: typeof import('vue-router/auto')['defineLoader']
   const definePage: typeof import('unplugin-vue-router/runtime')['definePage']
+  const deleteLikeData: typeof import('./src/api/content/index')['deleteLikeData']
   const deleteOrderData: typeof import('./src/api/content/index')['deleteOrderData']
   const deleteShopGoodsData: typeof import('./src/api/content/index')['deleteShopGoodsData']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const error: typeof import('./src/composables/log')['error']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const getAllLikeData4UserId: typeof import('./src/api/content/index')['getAllLikeData4UserId']
   const getAllOrderData4UserId: typeof import('./src/api/content/index')['getAllOrderData4UserId']
   const getAllShopGoodData4UserId: typeof import('./src/api/content/index')['getAllShopGoodData4UserId']
   const getBannerData: typeof import('./src/api/banner/index')['getBannerData']
@@ -339,6 +342,8 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
+    readonly addLikeData: UnwrapRef<typeof import('./src/api/content/index')['addLikeData']>
     readonly addOrderData: UnwrapRef<typeof import('./src/api/content/index')['addOrderData']>
     readonly addShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['addShopGoodsData']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -367,12 +372,14 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly definePage: UnwrapRef<typeof import('unplugin-vue-router/runtime')['definePage']>
+    readonly deleteLikeData: UnwrapRef<typeof import('./src/api/content/index')['deleteLikeData']>
     readonly deleteOrderData: UnwrapRef<typeof import('./src/api/content/index')['deleteOrderData']>
     readonly deleteShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['deleteShopGoodsData']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly error: UnwrapRef<typeof import('./src/composables/log')['error']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly getAllLikeData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllLikeData4UserId']>
     readonly getAllOrderData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllOrderData4UserId']>
     readonly getAllShopGoodData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllShopGoodData4UserId']>
     readonly getBannerData: UnwrapRef<typeof import('./src/api/banner/index')['getBannerData']>
@@ -661,6 +668,8 @@ declare module '@vue/runtime-core' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
+    readonly addLikeData: UnwrapRef<typeof import('./src/api/content/index')['addLikeData']>
     readonly addOrderData: UnwrapRef<typeof import('./src/api/content/index')['addOrderData']>
     readonly addShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['addShopGoodsData']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -689,12 +698,14 @@ declare module '@vue/runtime-core' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly definePage: UnwrapRef<typeof import('unplugin-vue-router/runtime')['definePage']>
+    readonly deleteLikeData: UnwrapRef<typeof import('./src/api/content/index')['deleteLikeData']>
     readonly deleteOrderData: UnwrapRef<typeof import('./src/api/content/index')['deleteOrderData']>
     readonly deleteShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['deleteShopGoodsData']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly error: UnwrapRef<typeof import('./src/composables/log')['error']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly getAllLikeData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllLikeData4UserId']>
     readonly getAllOrderData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllOrderData4UserId']>
     readonly getAllShopGoodData4UserId: UnwrapRef<typeof import('./src/api/content/index')['getAllShopGoodData4UserId']>
     readonly getBannerData: UnwrapRef<typeof import('./src/api/banner/index')['getBannerData']>

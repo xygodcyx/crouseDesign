@@ -3,15 +3,19 @@ import Mock from 'mockjs'
 // import book from './modules/book';
 import { getBannersData } from './banner'
 import {
+  addLikeData,
   addOrderData,
   addShopGoodsData,
+  deleteLikeData,
   deleteOrderData,
   deleteShopGoodData,
+  getAllLikeData4UserId,
   getAllOrderData4UserId,
   getAllShopGoodData4UserId,
   getGoodsData,
   getShopGoodData4GoodIdAndUserId,
   getShopGoodsDataBaseData,
+  updateLikeData,
   updateOrderData,
 
 } from './content/'
@@ -35,6 +39,11 @@ mock('/api/getAllOrderData4UserId', 'post', getAllOrderData4UserId)
 mock('/api/addOrderData', 'post', addOrderData)
 mock('/api/deleteOrderData', 'post', deleteOrderData)
 mock('/api/updateOrderData', 'post', updateOrderData)
+// likes
+mock('/api/getAllLikeData4UserId', 'post', getAllLikeData4UserId)
+mock('/api/addLikeData', 'post', addLikeData)
+mock('/api/deleteLikeData', 'post', deleteLikeData)
+mock('/api/updateLikeData', 'post', updateLikeData)
 // users
 mock('/api/login', 'post', login)
 mock('/api/register', 'post', register)
