@@ -22,8 +22,6 @@ nextTick(() => {
   router.beforeEach((to, form, next) => {
     log(to.path)
     if (!userStore.isLogin && needLoginRouter.includes(to.path.split('/')[1].toLocaleLowerCase())) {
-      alert('go')
-      alert(to.path)
       next('/403')
     }
     else {
