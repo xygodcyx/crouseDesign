@@ -45,10 +45,11 @@ async function buyShopGood(shopGood: ShopGoodDataBase) {
   log(result)
 }
 async function buyAllShopGood() {
-  (shopGoods?.value || []).forEach((shopGood) => {
-    buyShopGood(shopGood)
-  })
-  // shopGoods?.value = []
+  if (shopGoods.value) {
+    const orderData = new OrderDataBase(userStore.userInfo.id, shopGoods.value)
+    const result = await addOrderData(orderData)
+    log(result)
+  }
 }
 </script>
 
