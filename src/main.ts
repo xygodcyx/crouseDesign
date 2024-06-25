@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 import App from './App.vue'
@@ -14,15 +14,16 @@ import { useUserStore } from './store/user'
 
 const app = createApp(App)
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
 })
 nextTick(() => {
   const userStore = useUserStore()
-  const needLoginRouter = ['/cart', '/like', '/userInfo', '/order']
+  const needLoginRouter = ['shop', 'like', 'userinfo', 'order']
   router.beforeEach((to, form, next) => {
-    // console.log(to.path)
-    if (!userStore.isLogin && needLoginRouter.includes(to.path)) {
-      log('go')
+    log(to.path)
+    if (!userStore.isLogin && needLoginRouter.includes(to.path.split('/')[1].toLocaleLowerCase())) {
+      alert('go')
+      alert(to.path)
       next('/403')
     }
     else {
