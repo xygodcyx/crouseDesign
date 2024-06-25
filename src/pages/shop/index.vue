@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ShopGoodDataBase } from '~/mock/content/types'
 import { useUserStore } from '~/store/user'
+import { OrderDataBase } from '~/mock/content/types'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -38,18 +39,24 @@ async function subtractShopGoodQuantity(shopGood: ShopGoodDataBase) {
   await getAllShopGoods()
 }
 async function buyShopGood(shopGood: ShopGoodDataBase) {
-  log(shopGood)
+  // log(shopGood)
+  const orderData = new OrderDataBase(userStore.userInfo.id, [shopGood])
+  const result = await addOrderData(orderData)
+  log(result)
 }
 async function buyAllShopGood() {
-
+  (shopGoods?.value || []).forEach((shopGood) => {
+    buyShopGood(shopGood)
+  })
+  // shopGoods?.value = []
 }
 </script>
 
 <template>
-  <div class="shopGoodsWrap" flex="~ justify-center items-center" mt--6 font-sans>
+  <div class="shopGoodsWrap" flex="~ justify-center items-center" lt-sm="mt--6" mt0 font-sans>
     <div v-if="shopGoods?.length !== 0" class="shopGoods" flex="col">
       <!-- operation -->
-      <div flex="~ justify-start items-center gap2" mb2>
+      <div flex="~ justify-start items-center gap2" mb4 lt-sm="mb2">
         <div text-btn h9 w9 bg-green text-sm lh-9 @click="buyAllShopGood">
           全要
         </div>
@@ -63,15 +70,15 @@ async function buyAllShopGood() {
       <div
         v-for="shopGood in shopGoods" :key="shopGood.id" class="shopGoodItem"
 
-        mb4 h10 w86 b-rounded shadow shadow-amber flex="~ items-center justify-between gap6" lt-sm="gap0"
+        mb4 h14 w160 b-rounded p1 shadow shadow-amber flex="~ items-center justify-between gap6" lt-sm="gap0 h10 w90 p0"
       >
         <div class="left" flex="~ justify-center items-center gap4" lt-sm="h10 gap1" h20>
           <img
             ml1
             :src="shopGood.good.pic.replace(shopGood.good.label.substring(0, 5), shopGood.good.label[0]).replace('600x400', '30x30')" alt="12" lt-sm="h7 w7" inline-block h10 w10 b-rounded
           >
-          <span lt-sm="text-3" ml1 mr2 w22 overflow-hidden text-ellipsis text-nowrap text-2xl :title="shopGood.good.label">{{ shopGood.good.label }}</span>
-          <div flex="~ items-center justify-start" w20>
+          <span lt-sm="text-3 w22" ml1 mr2 w40 overflow-hidden text-ellipsis text-nowrap text-2xl :title="shopGood.good.label">{{ shopGood.good.label }}</span>
+          <div flex="~ items-center justify-start" lt-sm="w20" w50>
             <span mr1 text-start lt-sm="text-4" text-2xl :title="shopGood.good.label">{{ shopGood.quantity }}</span>
             <span text-start text-5 text-red flex="2" lt-sm="text-4" :title="shopGood.good.label">￥{{ shopGood.sum }}</span>
           </div>
