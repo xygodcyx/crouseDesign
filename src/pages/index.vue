@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Good } from '~/mock/content/types/GoodsData'
+import { useDefer } from '~/utool/useDefer'
 
 defineOptions({
   name: 'IndexPage',
@@ -7,6 +8,7 @@ defineOptions({
 const router = useRouter()
 const goodsData = ref<Array<Good>>([])
 const goodsSearchData = ref<Array<Good>>([])
+const defer = computed(() => useDefer(goodsData.value.length))
 const classifys = [
   {
     label: '首页',
@@ -97,32 +99,36 @@ function search() {
     <!-- content -->
     <div flex="~ wrap " gap-2 lt-sm="justify-center gap-4" lt-xl="justify-center gap6">
       <div
-        v-for="good in goodsSearchData" :key="good.id"
+        v-for="(good, i) in goodsSearchData"
+        :key="good.id"
         flex="~ col"
         ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md dark:shadow="#ffffff32"
         lt-sm="w-160px"
       >
-        <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">
-          <template #placeholder>
-            <div class="image-slot" text-center>
-              等一会哦<span class="dot">...</span>
-            </div>
-          </template>
-        </el-image>
-        <!-- <img h-100px w-full select-none :src="good.pic" alt="" @click="console.log(good)"> -->
-        <span cursor-text text-lg>{{ good.label }}</span>
-        <div flex="~ items-center justify-between">
-          <p flex="~ items-center" cursor-text>
-            <del>
-              ￥{{ good.oldPrice }}
-            </del>
-            <span text-xl text-red>
-              ￥{{ good.newPrice }}
-            </span>
-          </p>
-          <p mr2 text-2.4>
-            <em cursor-text text-shadow text-shadow-color-black dark:text-amber>[{{ good.classify }}]</em>
-          </p>
+        <!-- goodItem -->
+        <div v-if="defer(i)">
+          <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">
+            <template #placeholder>
+              <div class="image-slot" text-center>
+                等一会哦<span class="dot">...</span>
+              </div>
+            </template>
+          </el-image>
+          <!-- <img h-100px w-full select-none :src="good.pic" alt="" @click="console.log(good)"> -->
+          <span cursor-text text-lg>{{ good.label }}</span>
+          <div flex="~ items-center justify-between">
+            <p flex="~ items-center" cursor-text>
+              <del>
+                ￥{{ good.oldPrice }}
+              </del>
+              <span text-xl text-red>
+                ￥{{ good.newPrice }}
+              </span>
+            </p>
+            <p mr2 text-2.4>
+              <em cursor-text text-shadow text-shadow-color-black dark:text-amber>[{{ good.classify }}]</em>
+            </p>
+          </div>
         </div>
       </div>
     </div>

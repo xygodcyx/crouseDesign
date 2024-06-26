@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const canvas = $ref<HTMLCanvasElement>()!
 const ctx = $computed(() => canvas!.getContext('2d')!)
-const WIDTH = 600
-const HEIGHT = 600
+// const WIDTH = 600
+// const HEIGHT = 600
 interface Point {
   x: number
   y: number
@@ -15,9 +15,9 @@ interface Branch {
 function init() {
   ctx.strokeStyle = '#fff'
   step({
-    startPoint: { x: WIDTH / 2, y: HEIGHT },
-    length: 10,
-    theta: Math.PI / 2,
+    startPoint: { x: 0, y: 0 },
+    length: Math.random() * 17 + 10,
+    theta: -1,
   })
 }
 
@@ -33,7 +33,7 @@ const paddingTask: Function[] = []
 function step(b: Branch, deep: number = 0) {
   const endPoint = getEndPoint(b)
   drawBranch(b)
-  if (deep < 4 || Math.random() < 0.4) {
+  if (deep < 5 || Math.random() < 0.4) {
     // leftBranch
     paddingTask.push(() =>
       step({
@@ -43,7 +43,7 @@ function step(b: Branch, deep: number = 0) {
       }, deep + 1),
     )
   }
-  if (deep < 4 || Math.random() < 0.5) {
+  if (deep < 5 || Math.random() < 0.5) {
     // rightBranch
     paddingTask.push(() => step({
       startPoint: endPoint,
@@ -86,5 +86,5 @@ run()
 </script>
 
 <template>
-  <canvas ref="canvas" width="600" height="600" z-0 border />
+  <canvas ref="canvas" width="600" height="600" pos-absolute left-0 right-0 />
 </template>
