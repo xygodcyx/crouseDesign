@@ -6,7 +6,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <main p-4 font-sans text="gray-700 dark:gray-200">
+  <Plum />
+  <main text="gray-700 dark:gray-200" z-1 hidden p-4 font-sans>
     <TheTopNav />
     <TheBanner v-show="!route.path.includes('admin')" />
     <router-view v-slot="{ Component }">

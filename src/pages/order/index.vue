@@ -31,7 +31,6 @@ watch(() => orderData.value, (newOrderData) => {
 })
 onMounted(async () => {
   await getOrders()
-  log(orderData.value)
   onClickClassifyButton(ENUM_ORDER_STATUS.UNPAID)
   ElMessage('获取订单成功')
 })

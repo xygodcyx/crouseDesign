@@ -3,21 +3,10 @@ import { useUserStore } from '~/store/user'
 
 const router = useRouter()
 const navItems = [
-  {
-    label: '登出',
-    path: '/logout',
-    needLogin: true,
-    onclick: () => {},
-  },
+
   {
     label: '购物车',
     path: '/shop',
-    needLogin: true,
-    onclick: () => {},
-  },
-  {
-    label: '收藏',
-    path: '/like',
     needLogin: true,
     onclick: () => {},
   },
@@ -28,11 +17,24 @@ const navItems = [
     onclick: () => {},
   },
   {
+    label: '收藏',
+    path: '/like',
+    needLogin: true,
+    onclick: () => {},
+  },
+  {
+    label: '登出',
+    path: '/logout',
+    needLogin: true,
+    onclick: () => {},
+  },
+  {
     label: '注册',
     path: '/register',
     needLogin: false,
     onclick: () => {},
   },
+
 ]
 const userStore = useUserStore()
 const navNeedLoginItems = computed(() => {

@@ -65,7 +65,7 @@ onMounted(() => {
         <h1 t1>
           钱: <span text-red>￥{{ userStore.userInfo.balance }}</span>
         </h1>
-        <button btn @click="userStore.userInfo.balance += 10;">
+        <button btn @click="userStore.userInfo.balance += Math.floor(Math.random() * 50 + 10);">
           钱不够?加点钱
         </button>
       </div>
