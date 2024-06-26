@@ -30,11 +30,16 @@ watch(() => orderData.value, (newOrderData) => {
   showOrderData.value = newOrderData?.sort((a, b) => a.addDate > b.addDate ? -1 : 1)
 })
 onMounted(async () => {
-  orderData.value = (await getAllOrderData4UserId(userStore.userInfo.id)).data
+  await getOrders()
   log(orderData.value)
   onClickClassifyButton(ENUM_ORDER_STATUS.UNPAID)
   ElMessage('获取订单成功')
 })
+
+async function getOrders() {
+  orderData.value = (await getAllOrderData4UserId(userStore.userInfo.id)).data
+}
+
 async function cancelOrder(orderData: OrderDataBase) {
   orderData.status = ENUM_ORDER_STATUS.CANCELED
   await updateOrderData(orderData)
@@ -53,6 +58,7 @@ async function payOrder(orderData: OrderDataBase) {
   userStore.userInfo.balance -= orderData.sum
   ElMessage('支付成功')
 }
+
 function openOrderDetail(id: number) {
   router.push(`/order/${id}`)
 }
@@ -66,6 +72,11 @@ function onClickClassifyButton(_curClassify: ENUM_ORDER_STATUS | string) {
   else {
     showOrderData.value = orderData.value
   }
+}
+
+async function deleteOrder(orderId: number) {
+  await deleteOrderData(orderId)
+  await getOrders()
 }
 </script>
 
@@ -141,16 +152,18 @@ function onClickClassifyButton(_curClassify: ENUM_ORDER_STATUS | string) {
             </div>
           </div>
           <!-- addDate -->
-          <div mt2>
+          <div mt2 flex="~">
             <div flex="~ justify-start items-center">
               <span text-3 text-bluegray>下单时间：</span>
               <span text-indigo>{{ new Date(order.addDate).toLocaleString() }}</span>
             </div>
+            <div flex-auto />
+            <span text-sm text-red hover="underline cursor-pointer" @click="deleteOrder(order.id)">删除订单</span>
           </div>
         </div>
-        <div v-if="showOrderData?.length === 0">
-          <b text-base text-yellow>还没有待支付的订单</b>
-        </div>
+      </div>
+      <div v-if="showOrderData?.length === 0">
+        <b text-base text-yellow>没有{{ curClassify }}订单</b>
       </div>
     </div>
     <!-- footer -->
