@@ -1,15 +1,19 @@
+<script setup lang="ts">
+const route = useRoute()
+onMounted(() => {
+
+})
+</script>
+
 <template>
   <main p-4 font-sans text="gray-700 dark:gray-200">
     <TheTopNav />
-    <TheBanner />
+    <TheBanner v-show="!route.path.includes('admin')" />
     <router-view v-slot="{ Component }">
       <Transition name="slide-fade">
         <component :is="Component" />
       </Transition>
     </router-view>
-    <!-- <Transition>
-      <RouterView />
-    </Transition> -->
   </main>
 </template>
 
