@@ -16,25 +16,42 @@ onMounted(async () => {
   ElMessage('获取详细页成功')
 })
 function addShop() {
-  if (shopGood.value) {
-    shopGood.value.quantity += wantAddQuantity.value
-    addShopGoodsData(shopGood.value)
-    wantAddQuantity.value = 1
-    userStore.addShopGoodId(shopGood.value.id)
-    ElMessage('已添加到购物车')
+  if (!shopGood.value) {
+    return
   }
+  if (!userStore.isLogin) {
+    ElMessage('未登录,请登录')
+    return
+  }
+  shopGood.value.quantity += wantAddQuantity.value
+  addShopGoodsData(shopGood.value)
+  wantAddQuantity.value = 1
+  userStore.addShopGoodId(shopGood.value.id)
+  ElMessage('已添加到购物车')
 }
 function buyNow() {
-  if (shopGood.value) {
-    log(shopGood.value)
-    shopGood.value.quantity = wantAddQuantity.value
-    shopGood.value.sum = shopGood.value.quantity * shopGood.value.good.newPrice
-    addOrderData(new OrderDataBase(userStore.userInfo.id, [shopGood.value]))
-    ElMessage('已添加到订单,请前往支付')
+  if (!shopGood.value) {
+    return
   }
+  if (!userStore.isLogin) {
+    ElMessage('未登录,请登录')
+    return
+  }
+  log(shopGood.value)
+  shopGood.value.quantity = wantAddQuantity.value
+  shopGood.value.sum = shopGood.value.quantity * shopGood.value.good.newPrice
+  addOrderData(new OrderDataBase(userStore.userInfo.id, [shopGood.value]))
+  ElMessage('已添加到订单,请前往支付')
 }
 function addLike() {
-  const like = new LikeDataBase(userStore.userInfo.id, good.value!)
+  if (!good.value) {
+    return
+  }
+  if (!userStore.isLogin) {
+    ElMessage('未登录,请登录')
+    return
+  }
+  const like = new LikeDataBase(userStore.userInfo.id, good.value)
   addLikeData(like)
   ElMessage('已添加到收藏(如果已收藏则不会添加)')
 }
