@@ -43,7 +43,7 @@ function onClassifyClick(classifyKey: string) {
 }
 function search() {
   if (key.value) {
-    goodsSearchData.value = goodsData.value.filter(good => good.label.includes(key.value))
+    goodsSearchData.value = goodsData.value.filter(good => good.label.toUpperCase().includes(key.value.toUpperCase()))
   }
   else {
     goodsSearchData.value = goodsData.value
@@ -56,6 +56,8 @@ function search() {
 
 <template>
   <div lt-sm="mt--8">
+    <el-backtop :right="20" :bottom="100" />
+
     <!-- top -->
     <div
       mb3 ml2 h-10 frow justify-between
@@ -106,7 +108,7 @@ function search() {
         lt-sm="w-160px"
       >
         <!-- goodItem -->
-        <div v-if="defer(i)">
+        <div>
           <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">
             <template #placeholder>
               <div class="image-slot" text-center>

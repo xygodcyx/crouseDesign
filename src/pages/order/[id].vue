@@ -14,7 +14,7 @@ async function getOrder() {
 }
 
 async function removeShopGood2Order(id: number) {
-  // await deleteShopGoodsData(id)
+  // 删除订单中的商品
   if (!order.value) {
     return
   }

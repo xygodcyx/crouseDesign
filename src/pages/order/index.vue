@@ -2,10 +2,11 @@
 import { useUserStore } from '~/store/user'
 import type { OrderDataBase } from '~/mock/content'
 import { ENUM_ORDER_STATUS } from '~/mock/content/types'
+import type { OrderRequestInfo } from '~/common'
 
 const classics = [{
   label: '全部',
-  value: '',
+  value: ENUM_ORDER_STATUS.ALL,
   onclick: () => { },
 }, {
   label: '待支付',
@@ -24,25 +25,35 @@ const userStore = useUserStore()
 const router = useRouter()
 const orderData = ref<Array<OrderDataBase>>()
 const showOrderData = ref<Array<OrderDataBase>>()
-const curClassify = ref<ENUM_ORDER_STATUS | string>('')
+const orderRequestInfo = reactive<OrderRequestInfo>(
+  {
+    pageInfo: {
+      page: 1,
+      pageSize: 8,
+    },
+    classify: ENUM_ORDER_STATUS.UNPAID,
+  },
+)
+const allOrderCount = ref(0)
 /* order */
 watch(() => orderData.value, (newOrderData) => {
-  showOrderData.value = newOrderData?.sort((a, b) => a.addDate > b.addDate ? -1 : 1)
+  showOrderData.value = newOrderData
 })
 onMounted(async () => {
   await getOrders()
-  onClickClassifyButton(ENUM_ORDER_STATUS.UNPAID)
   ElMessage('获取订单成功')
 })
 
 async function getOrders() {
-  orderData.value = (await getAllOrderData4UserId(userStore.userInfo.id)).data
+  const { data, allCount } = (await getAllOrderData4UserId(userStore.userInfo.id, orderRequestInfo)).data
+  orderData.value = data
+  allOrderCount.value = allCount
 }
 
 async function cancelOrder(orderData: OrderDataBase) {
   orderData.status = ENUM_ORDER_STATUS.CANCELED
   await updateOrderData(orderData)
-  onClickClassifyButton(curClassify.value)
+  await getOrders()
 }
 
 async function payOrder(orderData: OrderDataBase) {
@@ -53,9 +64,9 @@ async function payOrder(orderData: OrderDataBase) {
   }
   orderData.status = ENUM_ORDER_STATUS.HAVE_PAID
   await updateOrderData(orderData)
-  onClickClassifyButton(curClassify.value)
   userStore.userInfo.balance -= orderData.sum
   ElMessage('支付成功')
+  await getOrders()
 }
 
 function openOrderDetail(id: number) {
@@ -63,14 +74,10 @@ function openOrderDetail(id: number) {
 }
 
 /* classify */
-function onClickClassifyButton(_curClassify: ENUM_ORDER_STATUS | string) {
-  curClassify.value = _curClassify
-  if (_curClassify !== '') {
-    showOrderData.value = (orderData.value || []).filter(order => order.status === _curClassify)
-  }
-  else {
-    showOrderData.value = orderData.value
-  }
+async function onClickClassifyButton(_curClassify: ENUM_ORDER_STATUS) {
+  orderRequestInfo.classify = _curClassify
+  orderRequestInfo.pageInfo.page = 1
+  await getOrders()
 }
 
 async function deleteOrder(orderId: number) {
@@ -166,5 +173,11 @@ async function deleteOrder(orderId: number) {
       </div>
     </div>
     <!-- footer -->
+    <el-pagination
+      v-if="(showOrderData || []).length > 0"
+      v-model:current-page="orderRequestInfo.pageInfo.page" v-model:page-size="orderRequestInfo.pageInfo.pageSize" v-model:total="allOrderCount"
+      size="small"
+      background mt2 layout="prev, pager, next" @current-change="getOrders()"
+    />
   </div>
 </template>

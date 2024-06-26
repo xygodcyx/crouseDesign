@@ -26,6 +26,7 @@ async function removeAllShopGood() {
   (shopGoods.value || []).forEach(async (shopGood) => {
     await deleteShopGoodsData(shopGood.id)
   })
+  shopGoods.value = []
   await getAllShopGoods()
   userStore.removeAllShopGoodId()
   ElMessage('删除成功')

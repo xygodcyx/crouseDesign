@@ -8,7 +8,7 @@ export function letLikeDataBase(id?: number) {
 }
 export function getAllLike4UserId(userId: number) {
   likeDataBase = JSON.parse(localStorage.getItem('likeDataBase') || '[]') || []
-  return likeDataBase.filter(likeData => likeData.userId === userId)
+  return likeDataBase.filter(likeData => likeData.userId === userId).sort((a, b) => a.addDate > b.addDate ? -1 : 1)
 }
 function CheckUserHasDuplicateLike(like: LikeDataBase): boolean {
   let result = false

@@ -1,8 +1,8 @@
 import { Random } from 'mockjs'
 import type { ShopGoodDataBase } from './ShopGoodsData'
-import type { GoodDataBase } from './GoodsData'
 
 export enum ENUM_ORDER_STATUS {
+  ALL = 'ALL',
   UNPAID = '待支付',
   HAVE_PAID = '已支付',
   CANCELED = '已取消',
