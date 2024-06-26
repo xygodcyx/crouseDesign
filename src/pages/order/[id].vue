@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { OrderDataBase, ShopGoodDataBase } from '~/mock/content'
 
+const router = useRouter()
 const params = useRoute('/order/[id]').params
 const order = ref<OrderDataBase>()
 
@@ -22,7 +23,15 @@ async function removeShopGood2Order(id: number) {
     return
   }
   order.value.shopGoods.splice(index, 1)
+  if (order.value.shopGoods.length === 0) {
+    await deleteOrderData(order.value.id)
+    await getOrder()
+    ElMessage('已删除订单中的所有商品,订单已被删除')
+    router.push('/order')
+    return
+  }
   order.value.sum = order.value.shopGoods.reduce((sum, shopGood) => sum + shopGood.sum, 0)
+
   await updateOrderData(order.value)
   await getOrder()
   ElMessage('删除成功')
@@ -32,6 +41,7 @@ async function increaseShopGoodQuantity2Order(shopGood: ShopGoodDataBase) {
   if (order.value) {
     shopGood.quantity += 1
     shopGood.sum = shopGood.quantity * shopGood.good.newPrice
+    order.value.sum = order.value.shopGoods.reduce((sum, shopGood) => sum + shopGood.sum, 0)
     await updateOrderData(order.value)
     await getOrder()
   }
@@ -40,6 +50,7 @@ async function subtractShopGoodQuantity2Order(shopGood: ShopGoodDataBase) {
   if (order.value) {
     shopGood.quantity > 1 ? shopGood.quantity -= 1 : shopGood.quantity = 1
     shopGood.sum = shopGood.quantity * shopGood.good.newPrice
+    order.value.sum = order.value.shopGoods.reduce((sum, shopGood) => sum + shopGood.sum, 0)
     await updateOrderData(order.value)
     await getOrder()
   }
