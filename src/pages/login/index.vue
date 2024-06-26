@@ -6,8 +6,8 @@ onMounted(async () => {
 const router = useRouter()
 const userStore = useUserStore()
 const LoginInfo = reactive({
-  account: 'xygod',
-  password: '123456',
+  account: '',
+  password: '',
 })
 async function onClickLoginButton() {
   if (LoginInfo.account === '' || LoginInfo.password === '') {
