@@ -20,7 +20,7 @@ nextTick(() => {
   const userStore = useUserStore()
   const needLoginRouter = ['shop', 'like', 'userinfo', 'order']
   router.beforeEach((to, form, next) => {
-    log(to.path)
+    // log(to.path)
     if (!userStore.isLogin && needLoginRouter.includes(to.path.split('/')[1].toLocaleLowerCase())) {
       next('/403')
     }

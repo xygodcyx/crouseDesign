@@ -1,4 +1,5 @@
 export { addOrderData } from './addOrderData'
 export { deleteOrderData } from './deleteOrderData'
 export { getAllOrderData4UserId } from './getAllOrderData4UserId'
+export { getOrderData4Id } from './getOrderData4Id'
 export { updateOrderData } from './updateOrderData'

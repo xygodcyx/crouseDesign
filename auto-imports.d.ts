@@ -51,6 +51,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getGoodsData: typeof import('./src/api/content/index')['getGoodsData']
+  const getOrderData4Id: typeof import('./src/api/content/index')['getOrderData4Id']
   const getShopGood4GoodIdAndUserIdData: typeof import('./src/api/content/index')['getShopGood4GoodIdAndUserIdData']
   const getShopGood4GoodIdData: typeof import('./src/api/content/index')['getShopGood4GoodIdData']
   const getShopGoodData4GoodIdAndUserId: typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']
@@ -386,6 +387,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getGoodsData']>
+    readonly getOrderData4Id: UnwrapRef<typeof import('./src/api/content/index')['getOrderData4Id']>
     readonly getShopGoodData4GoodIdAndUserId: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']>
     readonly getShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodsData']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
@@ -712,6 +714,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getGoodsData']>
+    readonly getOrderData4Id: UnwrapRef<typeof import('./src/api/content/index')['getOrderData4Id']>
     readonly getShopGoodData4GoodIdAndUserId: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodData4GoodIdAndUserId']>
     readonly getShopGoodsData: UnwrapRef<typeof import('./src/api/content/index')['getShopGoodsData']>
     readonly h: UnwrapRef<typeof import('vue')['h']>

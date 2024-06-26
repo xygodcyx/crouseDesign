@@ -10,6 +10,7 @@ export { getShopGoodData4GoodIdAndUserId } from './shopGood/getShopGoodData4Good
 export { addOrderData } from './order/addOrderData'
 export { deleteOrderData } from './order/deleteOrderData'
 export { getAllOrderData4UserId } from './order/getAllOrderData4UserId'
+export { getOrderData4Id } from './order/getOrderData4Id'
 export { updateOrderData } from './order/updateOrderData'
 // like
 export { addLikeData } from './like/addLikeData'

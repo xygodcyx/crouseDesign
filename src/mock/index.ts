@@ -13,6 +13,7 @@ import {
   getAllOrderData4UserId,
   getAllShopGoodData4UserId,
   getGoodsData,
+  getOrderData4Id,
   getShopGoodData4GoodIdAndUserId,
   getShopGoodsDataBaseData,
   updateLikeData,
@@ -36,6 +37,7 @@ mock('/api/addShopGoodsData', 'post', addShopGoodsData)
 mock('/api/deleteShopGoodsData', 'post', deleteShopGoodData)
 // orders
 mock('/api/getAllOrderData4UserId', 'post', getAllOrderData4UserId)
+mock('/api/getOrderData4Id', 'post', getOrderData4Id)
 mock('/api/addOrderData', 'post', addOrderData)
 mock('/api/deleteOrderData', 'post', deleteOrderData)
 mock('/api/updateOrderData', 'post', updateOrderData)
