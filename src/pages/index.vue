@@ -133,9 +133,11 @@ function search() {
                 <em cursor-text text-shadow text-shadow-color-black dark:text-amber>[{{ good.classify }}]</em>
               </p>
             </div>
-            <p h5 w-full text-right lh-5>
-              <span text-3 lh-5>销量:</span><span text-xl text-green lh-5>{{ good.sales }}</span>
-            </p>
+            <div h5 w-full lh-5 flex="~ items-center">
+              <span text-left text-3 lh-5>浏览量:</span><span text-md text-gray lh-5>{{ good.views }}</span>
+              <div flex-auto />
+              <span text-right text-3 lh-5>销量:</span><span text-xl text-green lh-5>{{ good.sales }}</span>
+            </div>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ async function subtractShopGoodQuantity2Order(shopGood: ShopGoodDataBase) {
       <!-- tip -->
       <p text-center lh-normal>
         <span flex-shrink-0 text-sm text-gray>当前订单编号:</span>
-        <span flex-shrink-0 text-xl text-green>{{ order.id }}</span>
+        <span flex-shrink-0 text-xl text-green>{{ order?.id }}</span>
       </p>
       <!-- shopGoodWrap -->
       <div flex="~ col justify-start" ha wa>
@@ -93,6 +93,9 @@ async function subtractShopGoodQuantity2Order(shopGood: ShopGoodDataBase) {
         </div>
       </div>
       <div />
+    </div>
+    <div v-else>
+      <span text-xl text-green>什么也没有哦,你是不是随便输的id?<br>请在订单列表里里打开详细页,谢谢!</span>
     </div>
   </div>
 </template>

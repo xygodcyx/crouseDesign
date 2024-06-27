@@ -12,7 +12,12 @@ const wantAddQuantity = ref(1)
 onMounted(async () => {
   const result = await getGoodsData(+params.id)
   good.value = result.data[0]
-  shopGood.value = (await getShopGoodData4GoodIdAndUserId(good.value!.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
+  if (!good.value) {
+    return
+  }
+  good.value.views += 1
+  await updateGoodsData(good.value)
+  shopGood.value = (await getShopGoodData4GoodIdAndUserId(good.value?.id, userStore.userInfo.id)).data || new ShopGoodDataBase(userStore.userInfo.id, good.value)
   ElMessage('获取详细页成功')
 })
 function addShop() {
@@ -88,9 +93,17 @@ function addLike() {
           <span text-2xl @click="wantAddQuantity++">+</span>
         </div>
       </div>
-      <p h5 text-right lh-5>
-        <span text-3 lh-5>销量:</span><span text-xl text-green lh-5>{{ good.sales }}</span>
-      </p>
+      <div h5 w-full lh-5 flex="~ justify-center items-center">
+        <p>
+          <span text-3 lh-5>浏览量:</span>
+          <span text-md text-gray lh-5>{{ good.views }}</span>
+        </p>
+        <div flex-auto />
+        <p>
+          <span text-3 lh-5>销量:</span>
+          <span text-xl text-green lh-5>{{ good.sales }}</span>
+        </p>
+      </div>
     </div>
     <div flex="gap3" class="operation" wa fcol lt-sm="w60">
       <button flex="~ justify-center" btn @click="buyNow">
@@ -103,5 +116,8 @@ function addLike() {
         <span i-material-symbols:kid-star-outline-sharp inline-block h6 w6 /> <span>收藏</span>
       </button>
     </div>
+  </div>
+  <div v-else>
+    <span text-xl text-green>什么也没有哦,你是不是随便输的id?<br>请在商品栏里打开详细页,谢谢!</span>
   </div>
 </template>

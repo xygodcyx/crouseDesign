@@ -9,6 +9,8 @@ export declare interface Good {
   newPrice: number
   pic: string
   sales: number
+  views: number
+
 }
 
 export class GoodDataBase implements Good {
@@ -20,7 +22,8 @@ export class GoodDataBase implements Good {
   newPrice: number
   pic: string
   sales: number
-  constructor(classify?: string, classifyValue?: string, label?: string, oldPrice?: number, newPrice?: number, pic?: string, sales?: number) {
+  views: number
+  constructor(classify?: string, classifyValue?: string, label?: string, oldPrice?: number, newPrice?: number, pic?: string, sales?: number, views?: number) {
     this.id = Random.integer(10)
     this.classify = classify || '好玩的'
     this.classifyValue = classifyValue || 'fun'
@@ -30,5 +33,6 @@ export class GoodDataBase implements Good {
     this.newPrice = newPrice || Random.integer(50, 100)
     this.pic = pic || Random.image('600x400', Random.color(), name.substring(0, 5))
     this.sales = sales || 0
+    this.views = views || 0
   }
 }

@@ -111,8 +111,11 @@ async function deleteOrder(orderId: number) {
         </div>
       </div>
     </div>
+    <div v-if="showOrderData?.length === 0">
+      <b text-base text-yellow>没有<span v-show="orderRequestInfo.classify !== ENUM_ORDER_STATUS.ALL">{{ orderRequestInfo.classify }}</span>订单</b>
+    </div>
     <!-- content -->
-    <div grid ha wa gap10 lt-sm="grid-cols-1" md="grid-cols-2" lg="grid-cols-3" xl="grid-cols-4">
+    <div v-if="(showOrderData || []).length > 0" grid ha wa gap10 lt-sm="grid-cols-1" md="grid-cols-2" lg="grid-cols-3" xl="grid-cols-4">
       <!-- order-item -->
       <div v-for="order in showOrderData" :key="order.id" ha border p1>
         <div flex="~ col" lt-sm="h50" md="h55" lg="h60" xl="h65">
@@ -175,9 +178,6 @@ async function deleteOrder(orderId: number) {
             <span text-sm text-red hover="underline cursor-pointer" @click="deleteOrder(order.id)">删除订单</span>
           </div>
         </div>
-      </div>
-      <div v-if="showOrderData?.length === 0">
-        <b text-base text-yellow>没有{{ curClassify }}订单</b>
       </div>
     </div>
     <!-- footer -->

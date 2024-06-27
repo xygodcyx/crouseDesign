@@ -25,6 +25,7 @@ export function getGoodsDataBase(id?: number) {
       'food',
     ],
   })
+
   addGood(new GoodDataBase(
     classifyValue2classify[classify.classify],
     classify.classify,
