@@ -119,17 +119,22 @@ function search() {
           </el-image>
           <!-- <img h-100px w-full select-none :src="good.pic" alt="" @click="console.log(good)"> -->
           <span cursor-text text-lg>{{ good.label }}</span>
-          <div flex="~ items-center justify-between">
-            <p flex="~ items-center" cursor-text>
-              <del>
-                ￥{{ good.oldPrice }}
-              </del>
-              <span text-xl text-red>
-                ￥{{ good.newPrice }}
-              </span>
-            </p>
-            <p mr2 text-2.4>
-              <em cursor-text text-shadow text-shadow-color-black dark:text-amber>[{{ good.classify }}]</em>
+          <div flex="~ col" ha>
+            <div flex="~ items-center justify-between">
+              <p flex="~ items-center" cursor-text>
+                <del>
+                  ￥{{ good.oldPrice }}
+                </del>
+                <span text-xl text-red>
+                  ￥{{ good.newPrice }}
+                </span>
+              </p>
+              <p mr2 text-2.4>
+                <em cursor-text text-shadow text-shadow-color-black dark:text-amber>[{{ good.classify }}]</em>
+              </p>
+            </div>
+            <p h5 w-full text-right lh-5>
+              <span text-3 lh-5>销量:</span><span text-xl text-green lh-5>{{ good.sales }}</span>
             </p>
           </div>
         </div>

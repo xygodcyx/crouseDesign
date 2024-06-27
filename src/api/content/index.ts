@@ -1,5 +1,6 @@
 // goods
 export { getGoodsData } from './good/getGoodsData'
+export { updateGoodsData } from './good/updateGoodsData'
 // shopGoods
 export { addShopGoodsData } from './shopGood/addShopGoodsData'
 export { getShopGoodsData } from './shopGood/getShopGoodsData'

@@ -16,6 +16,7 @@ import {
   getOrderData4Id,
   getShopGoodData4GoodIdAndUserId,
   getShopGoodsDataBaseData,
+  updateGoodsData,
   updateLikeData,
   updateOrderData,
 
@@ -29,6 +30,7 @@ const { mock } = Mock // Mock函数
 mock('/api/getBannerData', 'get', getBannersData)
 // goods
 mock('/api/getGoodsData', 'post', getGoodsData)
+mock('/api/updateGoodsData', 'post', updateGoodsData)
 // shopGoods
 mock('/api/getShopGoodsData', 'post', getShopGoodsDataBaseData)
 mock('/api/getAllShopGoodData4UserId', 'post', getAllShopGoodData4UserId)

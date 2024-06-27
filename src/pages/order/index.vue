@@ -50,23 +50,31 @@ async function getOrders() {
   allOrderCount.value = allCount
 }
 
-async function cancelOrder(orderData: OrderDataBase) {
-  orderData.status = ENUM_ORDER_STATUS.CANCELED
-  await updateOrderData(orderData)
+async function cancelOrder(order: OrderDataBase) {
+  order.status = ENUM_ORDER_STATUS.CANCELED
+  await updateOrderData(order)
   await getOrders()
 }
 
-async function payOrder(orderData: OrderDataBase) {
-  if (userStore.userInfo.balance < orderData.sum) {
+async function payOrder(order: OrderDataBase) {
+  if (userStore.userInfo.balance < order.sum) {
     // alert('钱不够')
     ElMessage('钱不够')
     return
   }
-  orderData.status = ENUM_ORDER_STATUS.HAVE_PAID
-  await updateOrderData(orderData)
-  userStore.userInfo.balance -= orderData.sum
+  order.status = ENUM_ORDER_STATUS.HAVE_PAID
+  await updateOrderData(order)
+  userStore.userInfo.balance -= order.sum
   ElMessage('支付成功')
+  increaseGoodSales(order)
   await getOrders()
+}
+async function increaseGoodSales(order: OrderDataBase) {
+  order.shopGoods.forEach(async (shopGood) => {
+    const good = (await getGoodsData(shopGood.good.id)).data[0]
+    good.sales += shopGood.quantity
+    await updateGoodsData(good)
+  })
 }
 
 function openOrderDetail(id: number) {

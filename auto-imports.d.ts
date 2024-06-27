@@ -137,6 +137,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updateGoodsData: typeof import('./src/api/content/index')['updateGoodsData']
   const updateOrderData: typeof import('./src/api/content/index')['updateOrderData']
   const updateUser: typeof import('./src/api/user/index')['updateUser']
   const useAbs: typeof import('@vueuse/math')['useAbs']
@@ -471,6 +472,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateGoodsData: UnwrapRef<typeof import('./src/api/content/index')['updateGoodsData']>
     readonly updateOrderData: UnwrapRef<typeof import('./src/api/content/index')['updateOrderData']>
     readonly updateUser: UnwrapRef<typeof import('./src/api/user/index')['updateUser']>
     readonly useAbs: UnwrapRef<typeof import('@vueuse/math')['useAbs']>
@@ -798,6 +800,7 @@ declare module '@vue/runtime-core' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateGoodsData: UnwrapRef<typeof import('./src/api/content/index')['updateGoodsData']>
     readonly updateOrderData: UnwrapRef<typeof import('./src/api/content/index')['updateOrderData']>
     readonly updateUser: UnwrapRef<typeof import('./src/api/user/index')['updateUser']>
     readonly useAbs: UnwrapRef<typeof import('@vueuse/math')['useAbs']>

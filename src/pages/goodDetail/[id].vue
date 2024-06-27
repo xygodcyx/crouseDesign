@@ -81,12 +81,16 @@ function addLike() {
             ￥{{ good.newPrice * wantAddQuantity }}
           </span>
         </p>
+
         <div mr5 inline-block ha w10 flex="~ justify-between items-center gap2">
           <span text-2xl @click="wantAddQuantity > 1 ? wantAddQuantity-- : wantAddQuantity = 1">-</span>
           <span cursor-text text-xl>{{ wantAddQuantity }}</span>
           <span text-2xl @click="wantAddQuantity++">+</span>
         </div>
       </div>
+      <p h5 text-right lh-5>
+        <span text-3 lh-5>销量:</span><span text-xl text-green lh-5>{{ good.sales }}</span>
+      </p>
     </div>
     <div flex="gap3" class="operation" wa fcol lt-sm="w60">
       <button flex="~ justify-center" btn @click="buyNow">

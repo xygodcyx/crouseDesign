@@ -39,6 +39,14 @@ export function addGood(good: GoodDataBase) {
   goodsDataBase.push(good)
   localStorage.setItem('goodDataBase', JSON.stringify(goodsDataBase))
 }
+export function updateGood(good: GoodDataBase) {
+  goodsDataBase = JSON.parse(localStorage.getItem('goodDataBase') || '[]') || []
+  const i = goodsDataBase.findIndex(u => u.id === good.id)
+  if (i !== -1) {
+    goodsDataBase[i] = good
+    localStorage.setItem('goodDataBase', JSON.stringify(goodsDataBase))
+  }
+}
 export function deleteGood(id: number) {
   const index = goodsDataBase.findIndex(u => u.id === id)
   if (index !== -1) {
