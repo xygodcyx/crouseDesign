@@ -5,7 +5,7 @@ export function useDefer(max: number) {
   let rafID: number = 0
   function run() {
     rafID = requestAnimationFrame(() => {
-      count.value++
+      count.value += 10
       // 判断是否达到最大值
       if (count.value >= max) {
         cancelAnimationFrame(rafID)

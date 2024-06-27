@@ -103,13 +103,14 @@ function search() {
       <div
         v-for="(good, i) in goodsSearchData"
         :key="good.id"
-        flex="~ col"
-        ha w-200px cursor-pointer gap-1 rounded-md p2 shadow-md dark:shadow="#ffffff32"
+        flex="~ col" ha w-200px gap-1 rounded-md p2 shadow-md dark:shadow="#ffffff32"
         lt-sm="w-160px"
       >
         <!-- goodItem -->
-        <div>
-          <el-image :src="good.pic" @click="router.push(`/goodDetail/${good.id}`)">
+        <div
+          v-if="defer(i)"
+        >
+          <el-image :src="good.pic" cursor-pointer @click="router.push(`/goodDetail/${good.id}`)">
             <template #placeholder>
               <div class="image-slot" text-center>
                 等一会哦<span class="dot">...</span>
