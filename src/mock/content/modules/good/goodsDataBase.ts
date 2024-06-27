@@ -26,14 +26,16 @@ export function getGoodsDataBase(id?: number) {
     ],
   })
 
-  addGood(new GoodDataBase(
-    classifyValue2classify[classify.classify],
-    classify.classify,
-    name,
-    Random.integer(100, 200),
-    Random.integer(50, 100),
-    Random.image('600x400', Random.color(), name.substring(0, 5)),
-  ))
+  for (let i = 0; i < 1; i++) {
+    addGood(new GoodDataBase(
+      classifyValue2classify[classify.classify],
+      classify.classify,
+      name,
+      Random.integer(100, 200),
+      Random.integer(50, 100),
+      Random.image('600x400', Random.color(), name.substring(0, 5)),
+    ))
+  }
   return id ? goodsDataBase.filter(good => good.id === id) : goodsDataBase
 }
 export function addGood(good: GoodDataBase) {

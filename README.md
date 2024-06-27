@@ -12,7 +12,7 @@
 
 ```bash
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
 <p>项目预览:</p>
