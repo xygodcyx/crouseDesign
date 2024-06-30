@@ -11,7 +11,8 @@ const userStore = useUserStore()
       mr-2
       cursor-pointer text-sm lh-relaxed transition-duration-300 lt-sm:hidden hover:text-gray-5 @click="router.push('/')"
     >
-      欢迎来到XyGod的商店
+      <!-- 欢迎来到XyGod的商店 -->
+      欢迎来到洛的商店
     </span>
     <span
 
