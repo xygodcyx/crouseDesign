@@ -41,9 +41,43 @@ function onClassifyClick(classifyKey: string) {
   log(classify.value)
   search()
 }
+
+function initKeyMap() {
+  const keyMap = []
+  for (let i = 0; i < key.value.length; i++) {
+    const char = key.value[i].toLowerCase() as string
+    keyMap.push({
+      char,
+      isMatch: false,
+    })
+  }
+  return keyMap
+}
+
 function search() {
   if (key.value) {
-    goodsSearchData.value = goodsData.value.filter(good => good.label.toUpperCase().includes(key.value.toUpperCase()))
+    goodsSearchData.value = []
+    // console.log(keyMap)
+    goodsData.value.forEach((good) => {
+      const _key = key.value.toLowerCase() as string
+      const _goodLabel = good.label.toLowerCase() as string
+      const keyMap = initKeyMap()
+      for (let j = 0; j < _key.length; j++) {
+        for (let i = 0; i < _goodLabel.length; i++) {
+          const char = _key[j]
+          const glc = _goodLabel[i]
+          if (glc === char) {
+            const index = keyMap.findIndex(keyObj => keyObj.char === char)
+            if (index + 1) {
+              keyMap[index].isMatch = true
+            }
+          }
+        }
+      }
+      if (keyMap.every(keyObj => keyObj.isMatch)) {
+        goodsSearchData.value.push(good)
+      }
+    })
   }
   else {
     goodsSearchData.value = goodsData.value
